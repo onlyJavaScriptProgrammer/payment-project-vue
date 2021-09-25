@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="root" :class="{ active: isShow }">
+    <Home @show="onShow" @close="onClose" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Home from './components/Home.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    HelloWorld,
+    Home
   },
+  data() {
+    return {
+      isShow: false
+    };
+  },
+  methods: {
+    onShow(data) {
+      this.isShow = data;
+    },
+    onClose(data) {
+      this.isShow = !data;
+    }
+  }
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="scss" src="./assets/styles/style.scss"></style>
